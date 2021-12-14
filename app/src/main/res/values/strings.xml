@@ -7,9 +7,9 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Calculator</string>
+    <string name="menu_gallery">Convert N-Base</string>
+    <string name="menu_slideshow">Convert km->m</string>
 
     <string name="input_null_message">Please input information</string>
     <string name="input_wrong_base_message">Your input do not belong to</string>
@@ -19,6 +19,30 @@
     <string name="oct_text">OCT</string>
     <string name="bin_text">BIN</string>
     <string name="input_edit_text">Input value</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="divide_by_zero">Cannot divide by zero</string>
+    <string name="standard_mode_text">Standard</string>
+
+    <string name="dot_button">.</string>
+    <string name="zero_button">0</string>
+    <string name="one_button">1</string>
+    <string name="two_button">2</string>
+    <string name="three_button">3</string>
+    <string name="four_button">4</string>
+    <string name="five_button">5</string>
+    <string name="six_button">6</string>
+    <string name="seven_button">7</string>
+    <string name="eight_button">8</string>
+    <string name="nine_button">9</string>
+
+    <string name="backspace_button">Backspace</string>
+    <string name="minus_button">+/-</string>
+    <string name="add_button">+</string>
+    <string name="sub_button">-</string>
+    <string name="multi_button">*</string>
+    <string name="divide_button">/</string>
+    <string name="result_button">=</string>
+    <string name="c_button">C</string>
+    <string name="ce_button">CE</string>
+
 </resources>
