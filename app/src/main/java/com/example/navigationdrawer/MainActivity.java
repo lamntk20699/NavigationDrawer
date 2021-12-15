@@ -43,61 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     Double buff1, buff2,result;
 
-    //Declare Convert N-Base variable
-    EditText input;
-    TextView output, resultHex, resultDec, resultOct, resultBin;
-    Spinner baseInput, baseOutput;
-    Button button;
-
-    String[] items = {"HEX", "DEC", "OCT", "BIN"};
-    String radixInput, radixOutput;
-
-    public static final String BASE = "0123456789ABCDEF";
-
-    public static String result(int n, int b) {
-        StringBuilder stringBuilder = new StringBuilder();
-        int x;
-        while (n > 0) {
-            x = n % b;
-            n /= b;
-            stringBuilder.append(BASE.charAt(x));
-        }
-        return stringBuilder.reverse().toString();
-    }
-
-    public boolean checkIndex(String data, String radix) {
-        //data = data.toUpperCase();
-        switch (radix) {
-            case "HEX":
-                for (int i = 0; i < data.length(); i++) {
-                    if (BASE.indexOf(data.charAt(i)) < 0) return false;
-                }
-                break;
-            case "DEC":
-                for (int i = 0; i < data.length(); i++) {
-                    if (BASE.indexOf(data.charAt(i)) < 0 || BASE.indexOf(data.charAt(i)) > 9) return false;
-                }
-                break;
-            case "OCT":
-                for (int i = 0; i < data.length(); i++) {
-                    if (BASE.indexOf(data.charAt(i)) < 0 || BASE.indexOf(data.charAt(i)) > 7) return false;
-                }
-                break;
-            case "BIN":
-                for (int i = 0; i < data.length(); i++) {
-                    if (BASE.indexOf(data.charAt(i)) < 0 || BASE.indexOf(data.charAt(i)) > 1) return false;
-                }
-                break;
-            default:
-                // Do nothing
-        }
-        return true;
-    }
-
-    public void displayToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,13 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -129,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         initTextView();
 
         // Converting Programming
+
     }
 
     @Override
@@ -174,19 +113,6 @@ public class MainActivity extends AppCompatActivity {
         resultDisplay.setText("0");
         mathBuffer = "";
         resultBuffer = "0";
-
-        input = findViewById(R.id.editTextTextPersonName);
-        output = findViewById(R.id.editTextTextPersonName2);
-        resultHex = findViewById(R.id.resultHex);
-        resultDec = findViewById(R.id.resultDec);
-        resultOct = findViewById(R.id.resultOct);
-        resultBin = findViewById(R.id.resultBin);
-        button = findViewById(R.id.button);
-
-        baseInput = findViewById(R.id.spinner_input);
-        baseOutput = findViewById(R.id.spinner_output);
-
-
     }
 
     private void setMathSpace(String givenValue) {
@@ -230,14 +156,15 @@ public class MainActivity extends AppCompatActivity {
         setMathSpace(" =");
         if (resultBuffer.equals("0")) {
             if (checkMath.equals("/")) {
+                resultDisplay.setTextSize(28);
                 resultDisplay.setText(R.string.divide_by_zero);
-                resultDisplay.setTextSize(30);
                 /*Enable button*/
                 btnAdd.setEnabled(false);
                 btnSub.setEnabled(false);
                 btnMulti.setEnabled(false);
                 btnMinus.setEnabled(false);
                 btnDivide.setEnabled(false);
+                btnResult.setEnabled(false);
             }
             else {
                 switch (checkMath) {
@@ -275,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
             resultDisplay.setText(result+"");
         }
         checkMath = "=";
-        btnResult.setEnabled(false);
     }
 
     public void clearOnClick(View view) {
@@ -301,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addOnClick(View view) {
         resultBuffer = resultDisplay.getText().toString();
+        mathDisplay.setText("");
         setMathSpace(resultBuffer);
         setMathSpace(" + ");
         buff1 = Double.parseDouble(resultBuffer+"");
@@ -312,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void subOnClick(View view) {
         resultBuffer = resultDisplay.getText().toString();
+        mathDisplay.setText("");
         setMathSpace(resultBuffer);
         setMathSpace(" - ");
         buff1 = Double.parseDouble(resultBuffer+"");
@@ -323,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void multiOnClick(View view) {
         resultBuffer = resultDisplay.getText().toString();
+        mathDisplay.setText("");
         setMathSpace(resultBuffer);
         setMathSpace(" * ");
         buff1 = Double.parseDouble(resultBuffer+"");
@@ -334,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void divideOnClick(View view) {
         resultBuffer = resultDisplay.getText().toString();
+        mathDisplay.setText("");
         setMathSpace(resultBuffer);
         setMathSpace(" / ");
         buff1 = Double.parseDouble(resultBuffer+"");
@@ -382,6 +312,4 @@ public class MainActivity extends AppCompatActivity {
     public void nineOnClick(View view) {
         setResultSpace("9");
     }
-
-    // Convert N-Base Fragment
 }
